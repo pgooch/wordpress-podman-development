@@ -28,7 +28,7 @@ This will allow you to apply overrides to the default PHP.ini. This is used to i
 ## Notes
 This is essentially a direct copy of [Tim Santeford's Guide](https://www.timsanteford.com/posts/docker-wordpress-environment-with-https-in-5-steps/) with some minor changes mostly done as personal preference. It's only really been tested and used on Fedora, but due to the nature of containerization it should work pretty much anywhere. 
 
-This was intended for local development and as such no thought or consideration has been given to it's use in a production environment. It should be fine but I'm still putting that out there.
+This was intended for local development and as such no thought or consideration has been given to it's use in a production environment. It should be fine if the appropriate changes are made to the compose file, but I'm still putting that out there.
 
 Some additional ideas I had that I did not implement as theyh were not needed at the time are:
 - Settings up WPCLI, either inside the WP container or in it's own.
