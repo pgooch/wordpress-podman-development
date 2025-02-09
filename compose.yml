@@ -1,0 +1,36 @@
+name: wordpress-podman-development
+
+services:
+  wordpress:
+    build: .
+    container_name: WordPress
+    ports:
+      - 8080:80
+      - 4433:443
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - db
+    volumes:
+      - ./wp-data:/var/www/html:z
+      - ./overrides.php.ini:/usr/local/etc/php/conf.d/overrides.php.ini:z
+      - ./apache-vhosts.conf:/etc/apache2/sites-available/000-default.conf:z
+
+  db:
+    image: mysql:5.7
+    container_name: WordPress_MySQL
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./db-data:/var/lib/mysql:z
+
+volumes:
+  wp-data:
+  db-data:
